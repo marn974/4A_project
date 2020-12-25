@@ -22,6 +22,12 @@ class MainActivity : AppCompatActivity() {
             mainViewModel.onClickedIncrement()
         }
 
+        button2.setOnClickListener {
+            mainViewModel.onClickedEmail("Useless value")
+
+
+        }
+
         mainViewModel.number.observe(this, Observer{
             value -> button.text = value.toString()
         })
