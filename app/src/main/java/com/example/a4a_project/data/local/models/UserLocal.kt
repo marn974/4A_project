@@ -13,7 +13,7 @@ data class UserLocal(
 
 }
 //Mapping function
-// on rajoute une fonction a User renvoyant une valeur de type Userlocal
+// on rajoute une fonction a User renvoie une valeur de type Userlocal
 // On return un object UserLocal initialisé avec l'entrée email (ci-dessus)
 fun User.toData() : UserLocal {
  return UserLocal(email = email)
