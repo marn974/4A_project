@@ -24,11 +24,18 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.loginLiveData.observe(this, Observer {
             when (it) {
-                is LoginSuccess -> { //TODO NAVIGATE
+                is LoginSuccess -> {
+                    MaterialAlertDialogBuilder(this)
+                    .setTitle("Success login")
+                    .setMessage("you succeed motherfucker.")
+                    .setPositiveButton("Try again") { dialog, which ->
+                        dialog.dismiss()
+                    }
+                    .show()
                 }
                 LoginError ->  {
                     MaterialAlertDialogBuilder(this)
-                        .setTitle("Error")
+                        .setTitle("Error login")
                         .setMessage("Information unknown.")
                         .setPositiveButton("Try again") { dialog, which ->
                             dialog.dismiss()
@@ -38,26 +45,44 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        mainViewModel.createLiveData.observe(this, Observer {
+                when (it) {
+                    is CreateSuccess -> {
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle("Creation success ")
+                            .setMessage("you succeed motherfucker.")
+                            .setPositiveButton("Try again") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                    CreateError -> {
+                        MaterialAlertDialogBuilder(this)
+                            .setTitle("Creation Error")
+                            .setMessage("Information unknown.")
+                            .setPositiveButton("Try again") { dialog, which ->
+                                dialog.dismiss()
+                            }
+                            .show()
+                    }
+                }
+            })
+
+
 
         login_button.setOnClickListener {
-            mainViewModel.onClickedLogin(login_edit.text.toString().trim(), password_edit.text.toString().trim()) // to delete space
-        }
-    /* TO DO
+            if(!login_edit.text.toString().trim().equals("") && !password_edit.text.toString().trim().equals(""))
+                mainViewModel.onClickedLogin(login_edit.text.toString().trim(),password_edit.text.toString().trim()) // to delete space
+            }
+
+        //Add activity ?
         create_account_button.setOnClickListener {
-            mainViewModel.onClickedLogin("Useless value", "essai")
-
+            if(!login_edit.text.toString().trim().equals("") && !password_edit.text.toString().trim().equals(""))
+                mainViewModel.onClickedCreate(login_edit.text.toString().trim(), password_edit.text.toString().trim()) // to delete space
         }
 
 
-     */
 
-        // Incremental button
-        /*
-        mainViewModel.number.observe(this, Observer{
-            value -> button.text = value.toString()
-        })
-
-         */
 
     }
 }

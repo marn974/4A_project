@@ -13,8 +13,9 @@ class UserRepository(
         databaseDao.insert(user.toData())
     }
 
-    fun getUser(email: String) :User? {
-        val userLocal = databaseDao.findByName(email)
+    //TO MODIFY pass word
+    fun getUser(username: String, password : String) :User? {
+        val userLocal = databaseDao.findByLoginInformation(username,password)
         return userLocal?.toEntity()
     }
 }

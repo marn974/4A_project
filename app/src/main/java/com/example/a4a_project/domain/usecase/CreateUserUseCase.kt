@@ -3,6 +3,7 @@ package com.example.a4a_project.domain.usecase
 import com.example.a4a_project.data.repository.UserRepository
 import com.example.a4a_project.domain.entity.User
 
+
 class CreateUserUseCase(
     private val userRepository: UserRepository
 ) {

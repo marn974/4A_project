@@ -10,11 +10,16 @@ import com.example.a4a_project.data.local.models.UserLocal
 @Dao
 interface DatabaseDao {
 
-    @Query(value = "SELECT * FROM userlocal")
+    @Query(value = "SELECT * FROM UserLocal")
     fun getAll(): List<UserLocal>
 
-    @Query("SELECT * FROM userlocal WHERE email LIKE :email LIMIT 1")
-    fun findByName(email: String): UserLocal ?
+    @Query("SELECT * FROM UserLocal WHERE Username LIKE :givenUserName AND " +
+            "Password LIKE :givenPassword LIMIT 1")
+    fun findByLoginInformation(givenUserName: String, givenPassword : String): UserLocal ?
+
+
+    @Query("SELECT * FROM UserLocal WHERE UserLocal.Username LIKE :username")
+    fun findByTitle(username: String): UserLocal
 
     @Insert
     fun insert(user: UserLocal)

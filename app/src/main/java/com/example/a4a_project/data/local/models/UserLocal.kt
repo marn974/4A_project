@@ -7,7 +7,8 @@ import com.example.a4a_project.domain.entity.User
 
 @Entity
 data class UserLocal(
-    @ColumnInfo(name = "email") val email: String
+    @ColumnInfo(name = "Username") val username: String,
+    @ColumnInfo(name = "Password") val password: String
 ){
     @PrimaryKey(autoGenerate = true) var uid: Int? = null
 
@@ -16,9 +17,10 @@ data class UserLocal(
 // on rajoute une fonction a User renvoie une valeur de type Userlocal
 // On return un object UserLocal initialisé avec l'entrée email (ci-dessus)
 fun User.toData() : UserLocal {
- return UserLocal(email = email)
+ return UserLocal(username = username, password = password)
 }
 
 fun UserLocal.toEntity() : User {
-    return User(email = email)
+    return User(username = username, password = password)
 }
+

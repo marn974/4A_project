@@ -1,8 +1,5 @@
 package com.example.a4a_project.presentation.main
 
-import android.os.Bundle
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,10 +7,8 @@ import com.example.a4a_project.domain.entity.User
 import com.example.a4a_project.domain.usecase.CreateUserUseCase
 import com.example.a4a_project.domain.usecase.GetUserUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
 
 class MainViewModel(
     private val createUserUseCase : CreateUserUseCase,
@@ -22,6 +17,7 @@ class MainViewModel(
     val text : MutableLiveData<String> = MutableLiveData()
     val number : MutableLiveData<Int> = MutableLiveData()
     val loginLiveData : MutableLiveData<LoginStatus> = MutableLiveData()
+    val createLiveData : MutableLiveData<CreateStatus> = MutableLiveData()
 
     init{
         number.value = 0
@@ -31,14 +27,15 @@ class MainViewModel(
     fun onClickedIncrement(){
         number.value = (number.value ?: 0) + 1
     }
-    fun onClickedLogin(emailUser : String, password : String){
+    fun onClickedLogin(username : String, password : String){
+
         //On change de thread (similar to coroutine)
         viewModelScope.launch(Dispatchers.IO){ // Operations lourdes sur un thread background
             //createUserUseCase.invoke(User("test"))
             //delay(1000)
-            val user : User? = getUserUseCase.invoke(emailUser)
+            val user : User? = getUserUseCase.invoke(username, password)
             val loginStatus = if (user != null ){
-                LoginSuccess(user.email)
+                LoginSuccess(user.username, user.password)
             }else{
                 LoginError
             }
@@ -46,6 +43,30 @@ class MainViewModel(
                 loginLiveData.value = loginStatus
 
             }
+
+        }
+
+    }
+
+    fun onClickedCreate(username : String, password : String){
+
+        //On change de thread (similar to coroutine)
+        viewModelScope.launch(Dispatchers.IO){ // Operations lourdes sur un thread background
+
+
+            val user : User? = getUserUseCase.invoke(username, password) // Check if the information are already in the database
+            val CreateStatus = if (user != null && username != null && password != null){ //Already exist
+                CreateError
+            }else{
+                createUserUseCase.invoke(User(username, password))
+                CreateSuccess
+            }
+            val debug = "debug"
+            withContext(Dispatchers.Main){//Main thread
+                createLiveData.value = CreateStatus
+
+            }
+
 
         }
 
