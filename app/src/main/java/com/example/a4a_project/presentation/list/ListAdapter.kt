@@ -1,5 +1,8 @@
 package com.example.a4a_project.presentation.list
 
+import android.content.Context
+import android.content.res.Resources
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
 import com.example.a4a_project.domain.entity.Ghibli
+import java.security.AccessController.getContext
 
 class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
@@ -29,7 +33,11 @@ class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAda
         // Create new views (invoked by the layout manager)
         override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
             // Create a new view, which defines the UI of the list item
-            val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.recycler_view_details, viewGroup, false)
+            val view = LayoutInflater.from(viewGroup.context).inflate(
+                R.layout.recycler_view_details,
+                viewGroup,
+                false
+            )
 
             return ViewHolder(view)
         }
@@ -39,14 +47,24 @@ class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAda
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that elemente
+
             viewHolder.directorName.text = list.get(position).director
             viewHolder.movieTitle.text = list.get(position).title
             viewHolder.releaseDate.text = list.get(position).release_date
-            //ADD IMAGE
+
+            //viewHolder.moviePoster.setImageResource(getCustomedIdentifier(viewHolder, viewHolder.movieTitle.text.toString()))
+
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = list.size
+
+        fun getCustomedIdentifier(viewHolder: ViewHolder, title : String) : Int {
+
+            val context : Context = viewHolder.itemView.context
+            val namePoster : String? = "poster_"+title?.toLowerCase()?.replace(" ", "_")?.replace("'", "_")
+            return context.resources.getIdentifier("drawable/"+namePoster, null, context.packageName);
+        }
 
 
 }

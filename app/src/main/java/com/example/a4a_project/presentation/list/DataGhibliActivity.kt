@@ -23,6 +23,7 @@ class DataGhibliActivity : AppCompatActivity() {
         dataGhibliViewModel.apiCall()
 
         fun showList(list : List<Ghibli>){
+
             Log.i("SHOW LIST ", "got called")
             var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
             recyclerView.setHasFixedSize(true)

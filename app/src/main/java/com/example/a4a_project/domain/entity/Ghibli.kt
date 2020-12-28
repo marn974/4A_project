@@ -10,3 +10,5 @@ data class Ghibli (
     val rt_score : String? = ""
 )
 
+
+
