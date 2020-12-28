@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
 import com.example.a4a_project.data.Ghibli
@@ -51,9 +52,16 @@ class MainActivity : AppCompatActivity() {
 
 
         login_button.setOnClickListener {
-            if(!login_edit.text.toString().trim().equals("") && !password_edit.text.toString().trim().equals(""))
-                mainViewModel.onClickedLogin(login_edit.text.toString().trim(),password_edit.text.toString().trim()) // to delete space
-            }
+            if (!login_edit.text.toString().trim().equals("") && !password_edit.text.toString()
+                    .trim().equals("")
+            )
+                mainViewModel.onClickedLogin(
+                    login_edit.text.toString().trim(),
+                    password_edit.text.toString().trim()
+                ) // to delete space
+            else
+                Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_LONG).show()
+        }
 
         //Add activity ?
         create_account_button.setOnClickListener {

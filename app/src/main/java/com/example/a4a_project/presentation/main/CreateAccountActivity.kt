@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.create_account_button
 import kotlinx.android.synthetic.main.activity_main.login_edit
 import kotlinx.android.synthetic.main.activity_main.password_edit
+import kotlinx.coroutines.Delay
+import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 
 class CreateAccountActivity : AppCompatActivity() {
@@ -27,9 +29,11 @@ class CreateAccountActivity : AppCompatActivity() {
                         .setTitle("THIS IS A WIN!")
                         .setMessage("You are part of the family now !")
                         .setPositiveButton("Nice !") { dialog, which ->
-                            dialog.dismiss()
+                            finish()
                         }
                         .show()
+
+
                 }
                 CreateError -> {
                     MaterialAlertDialogBuilder(this)
