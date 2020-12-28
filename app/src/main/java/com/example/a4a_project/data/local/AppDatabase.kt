@@ -9,4 +9,5 @@ import com.example.a4a_project.data.local.models.UserLocal
 ), version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun databaseDao(): DatabaseDao
+
 }

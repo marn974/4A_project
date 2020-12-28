@@ -1,18 +1,19 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.accountCreation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
+import com.example.a4a_project.presentation.main.CreateError
+import com.example.a4a_project.presentation.main.CreateErrorPassword
+import com.example.a4a_project.presentation.main.CreateErrorUser
+import com.example.a4a_project.presentation.main.CreateSuccess
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_create_account.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.create_account_button
 import kotlinx.android.synthetic.main.activity_main.login_edit
 import kotlinx.android.synthetic.main.activity_main.password_edit
-import kotlinx.coroutines.Delay
-import kotlinx.coroutines.delay
 import org.koin.android.ext.android.inject
 
 class CreateAccountActivity : AppCompatActivity() {

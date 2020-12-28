@@ -7,7 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
-import com.example.a4a_project.data.Ghibli
+import com.example.a4a_project.presentation.accountCreation.CreateAccountActivity
+import com.example.a4a_project.presentation.list.DataGhibliActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
@@ -20,13 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //val debug : String = "ho"
-        /*
-        mainViewModel.text.observe(this, Observer {
-                value -> main_text.text = value
-        })
-
-         */
 
         mainViewModel.loginLiveData.observe(this, Observer {
             when (it) {

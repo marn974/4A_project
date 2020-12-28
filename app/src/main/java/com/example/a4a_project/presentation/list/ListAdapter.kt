@@ -1,4 +1,4 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.list
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
-import com.example.a4a_project.data.Ghibli
+import com.example.a4a_project.domain.entity.Ghibli
 
 class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 

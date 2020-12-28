@@ -1,4 +1,4 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.accountCreation
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.a4a_project.domain.entity.User
 import com.example.a4a_project.domain.usecase.CreateUserUseCase
 import com.example.a4a_project.domain.usecase.GetUsernameUseCase
+import com.example.a4a_project.presentation.main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

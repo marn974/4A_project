@@ -1,4 +1,4 @@
-package com.example.a4a_project.data
+package com.example.a4a_project.domain.entity
 
 data class Ghibli (
     val id : String? = "",

@@ -1,6 +1,6 @@
-package com.example.a4a_project
+package com.example.a4a_project.presentation.list
 
-import com.example.a4a_project.data.Ghibli
+import com.example.a4a_project.domain.entity.Ghibli
 import retrofit2.Call
 import retrofit2.http.GET
 

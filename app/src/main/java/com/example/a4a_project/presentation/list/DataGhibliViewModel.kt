@@ -1,14 +1,13 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.list
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a4a_project.ApiInterface
 import com.example.a4a_project.R
-import com.example.a4a_project.data.Ghibli
+import com.example.a4a_project.domain.entity.Ghibli
+import com.example.a4a_project.presentation.main.CreateStatus
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,22 +15,13 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
-class DataGhibliActivity : AppCompatActivity() {
-    var list : List<Ghibli>? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.data_ghibli_activity)
-
-        list = apiCall()
+class DataGhibliViewModel : ViewModel(){
+    val films : MutableLiveData<List<Ghibli>> = MutableLiveData()
+    val apiCallResultLiveData : MutableLiveData<ApiCallStatus> = MutableLiveData()
 
 
-    }
-
-    fun apiCall() : List<Ghibli>?{
+    fun apiCall(){
         val baseUrl : String = "https://ghibliapi.herokuapp.com/"
-        var films : List<Ghibli>? = null
 
         val gson = GsonBuilder()
             .setLenient()
@@ -49,6 +39,7 @@ class DataGhibliActivity : AppCompatActivity() {
         call.enqueue(object : Callback<List<Ghibli>> {
 
             override fun onFailure(call: Call<List<Ghibli>>, t: Throwable) {
+                apiCallResultLiveData.value = ApiCallFailed
                 Log.i("API REST", "Failed Api call ")
 
             }
@@ -56,31 +47,21 @@ class DataGhibliActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Ghibli>>, response: Response<List<Ghibli>>) {
                 val res = response.body()
                 if (response.code() == 200 && res != null) {
-                    films = res
-                    Log.i("API REST", "Success Api call. Films is not empty ")
-                    showList(films!!)
+                    films.value = res
+                    apiCallResultLiveData.value = ApiCallSuccess
+                    Log.i("API REST", "Success Api call. Films is not empty " )
                 } else {
-                    //DO SOMETHING
+                    //DO SOMETHING ApiCallFailed
+                    apiCallResultLiveData.value = ApiCallFailed
                     Log.i("API REST", "Success Api call.Films is empty ")
                 }
+
 
             }
         })
 
-        return films
 
     }
-    fun showList(list : List<Ghibli>){
-        Log.i("SHOW LIST ", "got called")
-        var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
-        recyclerView.setHasFixedSize(true)
 
-        var layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
 
-        var adapter = ListAdapter(list)
-        recyclerView.adapter = adapter
-
-    }
 }
-
