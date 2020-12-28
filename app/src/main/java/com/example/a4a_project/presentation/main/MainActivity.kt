@@ -1,5 +1,6 @@
 package com.example.a4a_project.presentation.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainViewModel.apiCall()
-        val debug : String = "ho"
+        //val debug : String = "ho"
         /*
         mainViewModel.text.observe(this, Observer {
                 value -> main_text.text = value
@@ -29,13 +30,9 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.loginLiveData.observe(this, Observer {
             when (it) {
                 is LoginSuccess -> {
-                    MaterialAlertDialogBuilder(this)
-                    .setTitle("Success login")
-                    .setMessage("you succeed motherfucker.")
-                    .setPositiveButton("Try again") { dialog, which ->
-                        dialog.dismiss()
-                    }
-                    .show()
+                    val intent = Intent(this, DataGhibliActivity::class.java)
+                    startActivity(intent)
+
                 }
                 LoginError ->  {
                     MaterialAlertDialogBuilder(this)
