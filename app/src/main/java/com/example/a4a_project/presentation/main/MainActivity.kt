@@ -3,6 +3,7 @@ package com.example.a4a_project.presentation.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
 import com.example.a4a_project.data.Ghibli
@@ -45,28 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        mainViewModel.createLiveData.observe(this, Observer {
-                when (it) {
-                    is CreateSuccess -> {
-                        MaterialAlertDialogBuilder(this)
-                            .setTitle("Creation success ")
-                            .setMessage("you succeed motherfucker.")
-                            .setPositiveButton("Try again") { dialog, which ->
-                                dialog.dismiss()
-                            }
-                            .show()
-                    }
-                    CreateError -> {
-                        MaterialAlertDialogBuilder(this)
-                            .setTitle("Creation Error")
-                            .setMessage("Information unknown.")
-                            .setPositiveButton("Try again") { dialog, which ->
-                                dialog.dismiss()
-                            }
-                            .show()
-                    }
-                }
-            })
+
 
 
 
@@ -77,8 +57,9 @@ class MainActivity : AppCompatActivity() {
 
         //Add activity ?
         create_account_button.setOnClickListener {
-            if(!login_edit.text.toString().trim().equals("") && !password_edit.text.toString().trim().equals(""))
-                mainViewModel.onClickedCreate(login_edit.text.toString().trim(), password_edit.text.toString().trim()) // to delete space
+            val intent = Intent(this, CreateAccountActivity::class.java)
+            Log.i("Create account button", "CLIKED")
+            startActivity(intent)
         }
 
 

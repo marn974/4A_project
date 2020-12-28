@@ -18,8 +18,8 @@ interface DatabaseDao {
     fun findByLoginInformation(givenUserName: String, givenPassword : String): UserLocal ?
 
 
-    @Query("SELECT * FROM UserLocal WHERE UserLocal.Username LIKE :username")
-    fun findByTitle(username: String): UserLocal
+    @Query("SELECT * FROM UserLocal WHERE UserLocal.Username LIKE :username LIMIT 1")
+    fun findByUsername(username: String): UserLocal
 
     @Insert
     fun insert(user: UserLocal)

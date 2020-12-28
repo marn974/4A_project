@@ -57,7 +57,7 @@ class MainViewModel(
         }
 
     }
-
+    //Change on Click ?
     fun onClickedCreate(username: String, password: String){
 
         //On change de thread (similar to coroutine)
@@ -82,10 +82,6 @@ class MainViewModel(
 
     }
 
-
-    fun saveList( list : List<Ghibli>){
-        
-    }
 
 
 }

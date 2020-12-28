@@ -24,3 +24,7 @@ fun UserLocal.toEntity() : User {
     return User(username = username, password = password)
 }
 
+fun UserLocal.toUsername() : String {
+    return username
+}
+
