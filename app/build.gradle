@@ -82,7 +82,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
 
     //Recycler view
-    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha03'
-
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
 
 }

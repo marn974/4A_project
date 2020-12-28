@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel.apiCall()
         //val debug : String = "ho"
         /*
         mainViewModel.text.observe(this, Observer {

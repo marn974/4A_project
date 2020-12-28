@@ -82,44 +82,6 @@ class MainViewModel(
 
     }
 
-    fun apiCall(){
-        val baseUrl : String = "https://ghibliapi.herokuapp.com/"
-        var films : List<Ghibli>? = null
-
-        val gson = GsonBuilder()
-            .setLenient()
-            .create()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-
-        val apiInterface = retrofit.create(ApiInterface::class.java)
-
-        val call: Call<List<Ghibli>> = apiInterface.getGhibliResponse()
-
-        call.enqueue(object : Callback<List<Ghibli>> {
-
-            override fun onFailure(call: Call<List<Ghibli>>, t: Throwable) {
-                val debug = "hello"
-            }
-
-            override fun onResponse(call: Call<List<Ghibli>>, response: Response<List<Ghibli>>) {
-                val res = response.body()
-                if (response.code() == 200 && res != null) {
-                    films = res
-                } else {
-                    //DO SOMETHING
-                    val debug : String = "WOOPSIE"
-                }
-
-            }
-        })
-
-
-
-    }
 
     fun saveList( list : List<Ghibli>){
         
