@@ -20,7 +20,7 @@ class DataGhibliActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.data_ghibli_activity)
 
-
+        dataGhibliViewModel.onCreate(this)
         fun showList(){
             var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
             var layoutManager = LinearLayoutManager(this)
@@ -30,16 +30,20 @@ class DataGhibliActivity : AppCompatActivity() {
 
 
         }
+        dataGhibliViewModel.dataSetStatus.observe(this, Observer {
+            when (it) {
+                is DataSetNotEmpty ->{
+                    showList()
+                    Log.i("Observe dataSetStatus", "Not Empty " + dataGhibliViewModel.films.value!![1].director)
+                }
+                DataSetEmpty->{
+                    Log.i("Observe dataSetStatus", "empty -> api call")
+                    dataGhibliViewModel.apiCall()
+                }
+            }
+        })
 
-        dataGhibliViewModel.films.value = dataGhibliViewModel.getDataFromCache(this)
-        if(dataGhibliViewModel.films.value == null){
-            Log.i("Api call", "call call ")
-            dataGhibliViewModel.apiCall()
-        }
-        else {
-            showList()
-            Log.i("List retrieved success", "Ex° " + dataGhibliViewModel.films.value!![1].director)
-        }
+
 
         dataGhibliViewModel.apiCallResultLiveData.observe(this, Observer {
             when (it) {

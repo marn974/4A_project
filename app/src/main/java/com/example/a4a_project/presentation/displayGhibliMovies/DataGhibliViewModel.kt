@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.dsl.koinApplication
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class DataGhibliViewModel : ViewModel(){
     val films : MutableLiveData<List<Ghibli>> = MutableLiveData()
     val apiCallResultLiveData : MutableLiveData<ApiCallStatus> = MutableLiveData()
+    val dataSetStatus : MutableLiveData<DataSetStatus> = MutableLiveData()
 
 
     fun apiCall(){
@@ -78,6 +80,22 @@ class DataGhibliViewModel : ViewModel(){
             recyclerView.adapter = adapter
         }
 
+
+    }
+
+    fun onCreate(context: Context){
+        films.value = getDataFromCache(context)
+        val DataSetStatus = if(films.value == null){
+            Log.i("On Create", "data set empty ")
+            DataSetEmpty
+        }
+        else {
+            Log.i("On Create", "data set not empty ")
+            DataSetNotEmpty
+
+        }
+
+        dataSetStatus.value = DataSetStatus
 
     }
 
