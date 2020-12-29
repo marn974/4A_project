@@ -22,8 +22,14 @@ class DataGhibliActivity : AppCompatActivity() {
 
         dataGhibliViewModel.apiCall()
 
-        fun showList(list : List<Ghibli>){
+        fun showList(){
+            var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
+            var layoutManager = LinearLayoutManager(this)
+            recyclerView.setHasFixedSize(true)
+            recyclerView.layoutManager = layoutManager
+            dataGhibliViewModel.showList(dataGhibliViewModel.films.value!!, recyclerView, layoutManager)
 
+            /*
             Log.i("SHOW LIST ", "got called")
             var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
             recyclerView.setHasFixedSize(true)
@@ -33,6 +39,8 @@ class DataGhibliActivity : AppCompatActivity() {
 
             var adapter = ListAdapter(list)
             recyclerView.adapter = adapter
+
+             */
 
         }
 
@@ -44,7 +52,7 @@ class DataGhibliActivity : AppCompatActivity() {
                 }
                 ApiCallSuccess ->{
                     Log.i("OBSERVER", "Success")
-                    showList(dataGhibliViewModel.films.value!!)
+                    showList()
                 }
             }
 

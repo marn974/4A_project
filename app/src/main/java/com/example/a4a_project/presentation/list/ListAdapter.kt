@@ -52,7 +52,7 @@ class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAda
             viewHolder.movieTitle.text = list.get(position).title
             viewHolder.releaseDate.text = list.get(position).release_date
 
-            //viewHolder.moviePoster.setImageResource(getCustomedIdentifier(viewHolder, viewHolder.movieTitle.text.toString()))
+            viewHolder.moviePoster.setImageResource(getCustomedIdentifier(viewHolder, viewHolder.movieTitle.text.toString()))
 
         }
 

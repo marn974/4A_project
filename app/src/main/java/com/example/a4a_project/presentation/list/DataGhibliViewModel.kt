@@ -3,12 +3,15 @@ package com.example.a4a_project.presentation.list
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
 import com.example.a4a_project.domain.entity.Ghibli
 import com.example.a4a_project.presentation.main.CreateStatus
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -59,6 +62,17 @@ class DataGhibliViewModel : ViewModel(){
 
             }
         })
+
+
+    }
+    fun showList(list : List<Ghibli>, recyclerView: RecyclerView, layoutManager: LinearLayoutManager){
+
+        viewModelScope.launch(Dispatchers.IO){
+            Log.i("SHOW LIST VIEWMODEL", "got called")
+
+            var adapter = ListAdapter(list)
+            recyclerView.adapter = adapter
+        }
 
 
     }
