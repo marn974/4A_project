@@ -1,4 +1,4 @@
-package com.example.a4a_project.presentation.list
+package com.example.a4a_project.presentation.displayGhibliMovies
 
 import com.example.a4a_project.domain.entity.Ghibli
 import retrofit2.Call

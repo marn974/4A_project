@@ -1,5 +1,6 @@
-package com.example.a4a_project.presentation.list
+package com.example.a4a_project.presentation.displayGhibliMovies
 
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
-import com.example.a4a_project.domain.entity.Ghibli
 import org.koin.android.ext.android.inject
 
 
@@ -20,7 +20,6 @@ class DataGhibliActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.data_ghibli_activity)
 
-        dataGhibliViewModel.apiCall()
 
         fun showList(){
             var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
@@ -29,19 +28,17 @@ class DataGhibliActivity : AppCompatActivity() {
             recyclerView.layoutManager = layoutManager
             dataGhibliViewModel.showList(dataGhibliViewModel.films.value!!, recyclerView, layoutManager)
 
-            /*
-            Log.i("SHOW LIST ", "got called")
-            var recyclerView : RecyclerView = findViewById(R.id.my_recycler_view)
-            recyclerView.setHasFixedSize(true)
 
-            var layoutManager = LinearLayoutManager(this)
-            recyclerView.layoutManager = layoutManager
+        }
 
-            var adapter = ListAdapter(list)
-            recyclerView.adapter = adapter
-
-             */
-
+        dataGhibliViewModel.films.value = dataGhibliViewModel.getDataFromCache(this)
+        if(dataGhibliViewModel.films.value == null){
+            Log.i("Api call", "call call ")
+            dataGhibliViewModel.apiCall()
+        }
+        else {
+            showList()
+            Log.i("List retrieved success", "Ex° " + dataGhibliViewModel.films.value!![1].director)
         }
 
         dataGhibliViewModel.apiCallResultLiveData.observe(this, Observer {
@@ -52,6 +49,7 @@ class DataGhibliActivity : AppCompatActivity() {
                 }
                 ApiCallSuccess ->{
                     Log.i("OBSERVER", "Success")
+                    dataGhibliViewModel.saveList(dataGhibliViewModel.films.value!!, applicationContext)
                     showList()
                 }
             }

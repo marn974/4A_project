@@ -8,7 +8,7 @@ import com.example.a4a_project.domain.usecase.CreateUserUseCase
 import com.example.a4a_project.domain.usecase.GetUserUseCase
 import com.example.a4a_project.domain.usecase.GetUsernameUseCase
 import com.example.a4a_project.presentation.accountCreation.CreateAccountViewModel
-import com.example.a4a_project.presentation.list.DataGhibliViewModel
+import com.example.a4a_project.presentation.displayGhibliMovies.DataGhibliViewModel
 import com.example.a4a_project.presentation.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module

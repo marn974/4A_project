@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
 import com.example.a4a_project.presentation.accountCreation.CreateAccountActivity
-import com.example.a4a_project.presentation.list.DataGhibliActivity
+import com.example.a4a_project.presentation.displayGhibliMovies.DataGhibliActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject

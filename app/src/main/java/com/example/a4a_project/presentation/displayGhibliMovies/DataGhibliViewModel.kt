@@ -1,22 +1,26 @@
-package com.example.a4a_project.presentation.list
+package com.example.a4a_project.presentation.displayGhibliMovies
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.a4a_project.R
 import com.example.a4a_project.domain.entity.Ghibli
-import com.example.a4a_project.presentation.main.CreateStatus
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.dsl.koinApplication
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
 
 class DataGhibliViewModel : ViewModel(){
     val films : MutableLiveData<List<Ghibli>> = MutableLiveData()
@@ -52,9 +56,9 @@ class DataGhibliViewModel : ViewModel(){
                 if (response.code() == 200 && res != null) {
                     films.value = res
                     apiCallResultLiveData.value = ApiCallSuccess
-                    Log.i("API REST", "Success Api call. Films is not empty " )
+                    Log.i("API REST", "Success Api call. Films is not empty ")
                 } else {
-                    //DO SOMETHING ApiCallFailed
+
                     apiCallResultLiveData.value = ApiCallFailed
                     Log.i("API REST", "Success Api call.Films is empty ")
                 }
@@ -73,6 +77,40 @@ class DataGhibliViewModel : ViewModel(){
             var adapter = ListAdapter(list)
             recyclerView.adapter = adapter
         }
+
+
+    }
+
+
+    fun saveList(list: List<Ghibli>, context: Context) {
+        val gson : Gson = GsonBuilder().setLenient().create()
+        val json: String = gson.toJson(list)
+
+        val sharedPreference =  context.getSharedPreferences("listGhibliMovies",Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+        editor.putString("listGhibliMovies",json)
+        Log.i("SHARED: ", "in savelist()")
+        editor.commit()
+
+    }
+
+    fun getDataFromCache(context: Context): List<Ghibli>? {
+
+        val gson : Gson= Gson()
+        val list : List<Ghibli>
+        val sharedPreference =  context.getSharedPreferences("listGhibliMovies",Context.MODE_PRIVATE)
+        val json = sharedPreference.getString("listGhibliMovies",null)
+        val type = object : TypeToken<List<Ghibli>>(){}.type//converting the json to list
+        if (json != null){
+            list = gson.fromJson(json,type)
+            Log.i("SHARED From cache : ", " " + list.get(1).director)
+            return list
+        }
+
+        Log.i("SHARED From cache : ", "json is null")
+        return null
+
+
 
 
     }
