@@ -1,14 +1,18 @@
 package com.example.a4a_project.presentation.displayGhibliMovies
 
 import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
 import com.example.a4a_project.domain.entity.Ghibli
+import com.example.a4a_project.presentation.displayMovieInformation.GhibliMovieActivity
 
 class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
@@ -44,12 +48,12 @@ class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAda
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that elemente
+            val movie : Ghibli = list.get(position)
+            viewHolder.directorName.text = movie.director
+            viewHolder.movieTitle.text = movie.title
+            viewHolder.releaseDate.text = movie.release_date
 
-            viewHolder.directorName.text = list.get(position).director
-            viewHolder.movieTitle.text = list.get(position).title
-            viewHolder.releaseDate.text = list.get(position).release_date
-
-            viewHolder.moviePoster.setImageResource(getCustomedIdentifier(viewHolder, viewHolder.movieTitle.text.toString()))
+            viewHolder.moviePoster.setImageResource(getCustomedIdentifier(viewHolder, movie.title!!))
 
         }
 
