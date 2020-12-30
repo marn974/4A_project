@@ -5,10 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.example.a4a_project.R
-import com.example.a4a_project.presentation.main.CreateError
-import com.example.a4a_project.presentation.main.CreateErrorPassword
-import com.example.a4a_project.presentation.main.CreateErrorUser
-import com.example.a4a_project.presentation.main.CreateSuccess
+import com.example.a4a_project.presentation.loginPage.CreateError
+import com.example.a4a_project.presentation.loginPage.CreateErrorPassword
+import com.example.a4a_project.presentation.loginPage.CreateErrorUser
+import com.example.a4a_project.presentation.loginPage.CreateSuccess
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_create_account.*
 import kotlinx.android.synthetic.main.activity_main.create_account_button

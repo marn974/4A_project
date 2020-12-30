@@ -1,4 +1,4 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.loginPage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
