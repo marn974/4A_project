@@ -1,18 +1,14 @@
 package com.example.a4a_project.presentation.displayGhibliMovies
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a4a_project.R
 import com.example.a4a_project.domain.entity.Ghibli
-import com.example.a4a_project.presentation.displayMovieInformation.GhibliMovieActivity
 
 class ListAdapter(private val list: List<Ghibli>) : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 

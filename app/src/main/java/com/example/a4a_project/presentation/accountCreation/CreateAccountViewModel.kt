@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.a4a_project.domain.entity.User
 import com.example.a4a_project.domain.usecase.CreateUserUseCase
 import com.example.a4a_project.domain.usecase.GetUsernameUseCase
-import com.example.a4a_project.presentation.main.*
+import com.example.a4a_project.presentation.loginPage.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.accountCreation.CreateAccountActivity"></activity>
 
-        <activity android:name=".presentation.main.MainActivity">
+        <activity android:name=".presentation.loginPage.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

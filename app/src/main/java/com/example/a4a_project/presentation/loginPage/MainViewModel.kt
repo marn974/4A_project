@@ -1,4 +1,4 @@
-package com.example.a4a_project.presentation.main
+package com.example.a4a_project.presentation.loginPage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
