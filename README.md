@@ -1,6 +1,6 @@
 # MobilePrograming_LectureProject_4A
-##  **Presentation**   
-Voici une application mobile développé en kotlin. Son but est de créer/connecter des user afin de leur montrer une recycler view dont les données sont récupérés en faisant un appel à une API rest.
+##  **Présentation**   
+Voici une application mobile développée en kotlin. Son but est de créer/connecter des utilisateurs afin de leur montrer une recycler view dont les données sont récupérés en faisant un appel à une API rest.
 
 ##  **Elements implémentés**
 * Utilisation d’une réelle BDD (Room)
@@ -14,9 +14,8 @@ Voici une application mobile développé en kotlin. Son but est de créer/connec
 
 ##  **Fonctionnalités**
 
-### D'abord, l'écran de connection.
-Quand on lance l'application, on arrive sur une page de connection. Différents messages : Error login, ...; s'affichent dépendant de si les champs
-du login sont bien remplis ou si le compte existe.
+### D'abord, l'écran de connexion.
+Quand on lance l'application, on arrive sur une page de connexion. Différents messages : Error login, ...; s'affichent dépendant des actions non "autorisés" de l'utilisateur.
 
 ![Screenshot_20201230-021656_4A_project](https://user-images.githubusercontent.com/62256938/103318606-44048f80-4a2f-11eb-94c9-86187a638a7d.jpg)
 
@@ -25,18 +24,18 @@ du login sont bien remplis ou si le compte existe.
 ![Screenshot_20201230-021700_4A_project](https://user-images.githubusercontent.com/62256938/103318607-449d2600-4a2f-11eb-9487-3e27f979c14a.jpg)
 
 
-Une fois bien connecté, il sera emmené sur une page où il pourra visualiser les films de la maison Ghibli : 
+Une fois bien connecté, il sera emmené sur une page où il pourra visualiser les nombreux films de la maison d'animation Ghibli : 
 
 ![Screenshot_20201230-021846_4A_project](https://user-images.githubusercontent.com/62256938/103318819-defd6980-4a2f-11eb-963d-59e707832e45.jpg)
 
 
-L'utilisateur peut créer son compte et sera emmener sur la page suivante : 
+L'utilisateur peut créer son compte et sera diriger sur la page suivante : 
 
 ![Screenshot_20201230-022510_4A_project](https://user-images.githubusercontent.com/62256938/103318821-df960000-4a2f-11eb-8839-f65a2414d33f.jpg)
 
 
 
-### Ensuite, l'écran de création de compte
+### Ensuite, l'écran de création de compte.
 Dépendant de ses entrées, différents messages lui seront affichés. 
 
 Si le login donné est déjà utilisé par un autre utilisateur : 
@@ -55,7 +54,7 @@ Si les mots de passe donnés ne sont pas cohérents :
 ![Screenshot_20201230-022540_4A_project](https://user-images.githubusercontent.com/62256938/103318815-ddcc3c80-4a2f-11eb-8132-43f7d3392215.jpg)
 
 
-Enfin une fois bien enregistré, ce message s'affichera et ramènera l'utilisateur à l'écran de connection. 
+Enfin une fois bien enregistré, ce message s'affichera et ramènera l'utilisateur à l'écran de connexion. 
 
 ![Screenshot_20201230-022559_4A_project](https://user-images.githubusercontent.com/62256938/103318818-de64d300-4a2f-11eb-826e-a450f7fdc134.jpg)
 
